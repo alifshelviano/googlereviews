@@ -4,4 +4,3 @@ google_play_scraper
 seaborn
 Sastrawi
 matplotlib
-collections
