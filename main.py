@@ -70,7 +70,7 @@ def plot_common_problems(word_counts):
     st.pyplot(fig)
 
 def main():
-    st.title("📊 Google Play App Review Sentiment Analyzer")
+    st.title("📊 Google Play App Review (Ulasan) Sentiment Analyzer")
 
     # App options
     app_choices = {
@@ -93,8 +93,9 @@ def main():
 
     # Language selector
     #lang = st.radio("Choose Language:", ["Indonesian", "English"], index=0)
-    #lang_code = 'id' if lang == "Indonesian" else 'en'
-
+   # lang_code = 'id' if lang == "Indonesian" else 'en'
+    lang = "Indonesian"
+    lang_code = 'id'
     # Number of reviews
     num_reviews = st.number_input("Jumlah Ulasan yang Akan Diambil:", min_value=1, max_value=5000, value=100)
 
@@ -103,8 +104,8 @@ def main():
     sort_code = Sort.MOST_RELEVANT if sort_option == "Most Relevant" else Sort.NEWEST
 
     # Scrape button
-    if st.button("Mengambil Reviews"):
-        st.info(f"Mengunduh reviews for {app_name} in {lang}...")
+    if st.button("Mengambil Ulasan"):
+        st.info(f"Mengunduh Ulasan for {app_name} in {lang}...")
         df = fetch_reviews(app_id, lang_code, num_reviews, sort_code)
 
         if not df.empty:
