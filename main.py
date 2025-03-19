@@ -39,7 +39,7 @@ def fetch_reviews(app_id, lang, num_reviews, sort):
 def plot_score_distribution(df):
     fig, ax = plt.subplots()
     sns.countplot(x='score', data=df, palette='Set2', ax=ax, order=sorted(df['score'].unique()))
-    ax.set_title("Review Score Distribution")
+    ax.set_title("Distribusi Rating Ulasan")
     st.pyplot(fig)
 
 # Function to extract meaningful words from low-score reviews
@@ -66,51 +66,56 @@ def plot_common_problems(word_counts):
     words, counts = zip(*word_counts)
     fig, ax = plt.subplots()
     sns.barplot(x=counts, y=words, palette='Reds_r', ax=ax)
-    ax.set_title("Most Frequent Words in Low-Score Reviews")
+    ax.set_title("Kata Ulasan Rating Rendah")
     st.pyplot(fig)
 
 def main():
-    st.title("📊 Google Play Review Sentiment Analyzer")
+    st.title("📊 Google Play App Review Sentiment Analyzer")
 
     # App options
     app_choices = {
         "Telkomsel MyTelkomsel": "com.telkomsel.telkomselcm",
         "TelkomselKu": "com.tsel.telkomselku",
         "DigiposAja": "com.telkomsel.digiposaja",
-        "YinNi": "com.telkomsel.yinni",
-        "Telkomsel Survey": "com.telkomsel.tsurvey",
-        "Maxstream": "com.maxstream"
+        "IndiHome SMART": "com.telkomsel.yinni",
+        "Maxstream": "com.maxstream",
+        "Digi Korlantas(SIM)": "id.qoin.korlantas.",
+        "Super App Polri(SKCK)":"idsuperapps.polri.presisi",
+        "Signal Polri(STNK)":"app.signal.id",
+        "My Pertamina":"com.dafturn.mypertamina",
+
+
     }
 
     # App selector
-    app_name = st.selectbox("Choose an app:", list(app_choices.keys()))
+    app_name = st.selectbox("Pilih App:", list(app_choices.keys()))
     app_id = app_choices[app_name]
 
     # Language selector
-    lang = st.radio("Choose Language:", ["Indonesian", "English"], index=0)
-    lang_code = 'id' if lang == "Indonesian" else 'en'
+    #lang = st.radio("Choose Language:", ["Indonesian", "English"], index=0)
+    #lang_code = 'id' if lang == "Indonesian" else 'en'
 
     # Number of reviews
-    num_reviews = st.number_input("Number of Reviews to Fetch:", min_value=1, max_value=5000, value=100)
+    num_reviews = st.number_input("Jumlah Ulasan yang Akan Diambil:", min_value=1, max_value=5000, value=100)
 
     # Sort options
     sort_option = st.radio("Sort Reviews By:", ["Most Relevant", "Newest"], index=1)
     sort_code = Sort.MOST_RELEVANT if sort_option == "Most Relevant" else Sort.NEWEST
 
     # Scrape button
-    if st.button("Fetch Reviews"):
-        st.info(f"Fetching reviews for {app_name} in {lang}...")
+    if st.button("Mengambil Reviews"):
+        st.info(f"Mengunduh reviews for {app_name} in {lang}...")
         df = fetch_reviews(app_id, lang_code, num_reviews, sort_code)
 
         if not df.empty:
-            st.success(f"Fetched {len(df)} reviews!")
+            st.success(f"Terunduh {len(df)} reviews!")
             st.dataframe(df)
 
             # Visualize score distribution
             plot_score_distribution(df)
 
             # Extract and visualize common problems (low-score reviews)
-            st.subheader("🛠️ Common User Problems (Score ≤ 3)")
+            st.subheader("🛠️ Masalah Umum Pengguna (Rating ≤ 3)")
             common_issues = extract_top_words(df, max_score=3)
             plot_common_problems(common_issues)
 
