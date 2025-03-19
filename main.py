@@ -79,8 +79,8 @@ def main():
         "DigiposAja": "com.telkomsel.digiposaja",
         "IndiHome SMART": "com.telkomsel.yinni",
         "Maxstream": "com.maxstream",
-        "Digi Korlantas(SIM)": "id.qoin.korlantas.",
-        "Super App Polri(SKCK)":"idsuperapps.polri.presisi",
+        "Digi Korlantas(SIM)": "id.qoin.korlantas.user",
+        "Super App Polri(SKCK)":"superapps.polri.presisi.presisi",
         "Signal Polri(STNK)":"app.signal.id",
         "My Pertamina":"com.dafturn.mypertamina",
 
