@@ -12,7 +12,7 @@ factory = StopWordRemoverFactory()
 stopwords_id = set(factory.get_stop_words())
 
 # English stopwords
-stopwords_en = {"and",'nya', 'gak', 'aja', 'sama', 'sangat', 'jadi', 'mau', 'sering', 'makin', 'padahal', "or", "but", "the", "this", "that", "a", "an", "to", "in", "of", "on", "for", "with", "at", "by", "from", "as", "is", "are", "was", "were", "be", "been", "have", "has", "had", "do", "does", "did", "not", "no", "yes", "it", "you", "we", "they", "he", "she", "i", "me", "my", "your", "our", "their", "his", "her", "its", "ours", "theirs"}
+stopwords_en = {"and", "or", "but", "the", "this", "that", "a", "an", "to", "in", "of", "on", "for", "with", "at", "by", "from", "as", "is", "are", "was", "were", "be", "been", "have", "has", "had", "do", "does", "did", "not", "no", "yes", "it", "you", "we", "they", "he", "she", "i", "me", "my", "your", "our", "their", "his", "her", "its", "ours", "theirs"}
 
 # Combine all stopwords
 all_stopwords = stopwords_id.union(stopwords_en)
