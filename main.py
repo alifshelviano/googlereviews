@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from collections import Counter
 import re
-from google_play_scraper import reviews
-from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 
+from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
+from google_play_scraper import reviews, Sort
 # Initialize Sastrawi stopword remover
 factory = StopWordRemoverFactory()
 stopwords_id = set(factory.get_stop_words())
@@ -95,7 +95,7 @@ def main():
 
     # Sort options
     sort_option = st.radio("Sort Reviews By:", ["Most Relevant", "Newest"], index=1)
-    sort_code = 0 if sort_option == "Most Relevant" else 1
+    sort_code = Sort.MOST_RELEVANT if sort_option == "Most Relevant" else Sort.NEWEST
 
     # Scrape button
     if st.button("Fetch Reviews"):
