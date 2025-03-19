@@ -109,7 +109,7 @@ def main():
         df = fetch_reviews(app_id, lang_code, num_reviews, sort_code)
 
         if not df.empty:
-            st.success(f"Terunduh {len(df)} reviews!")
+            st.success(f"Terunduh {len(df)} Ulasan!")
             st.dataframe(df)
 
             # Visualize score distribution
